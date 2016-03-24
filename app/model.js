@@ -4,9 +4,9 @@ const {StateUtils} = NavigationExperimental;
 import extend from 'xtend';
 
 const initialNavState = {
-	key: 'MainNavigation',
-	index: 0,
-	children: [{
+  key: 'MainNavigation',
+  index: 0,
+  children: [{
     key: 'First'
   }]
 };
@@ -30,7 +30,7 @@ export default function model(interactions) {
       return state;
     });
   // The router.
-	// Handles all navigate actions.
+  // Handles all navigate actions.
   const onPressNavigateMod = interactions.get('onPressNavigate')
     .map(({dest, type}) => state => {
       if (getCurrentKey(state) === dest) {

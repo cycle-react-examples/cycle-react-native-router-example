@@ -1,8 +1,8 @@
 import React, { NavigationExperimental, Text, View, StyleSheet, PropTypes } from 'react-native';
 const {
-	AnimatedView: NavigationAnimatedView,
-	Card: NavigationCard,
-	Header: NavigationHeader
+  AnimatedView: NavigationAnimatedView,
+  Card: NavigationCard,
+  Header: NavigationHeader
 } = NavigationExperimental;
 import {component} from 'cycle-react';
 import model from './model';
@@ -11,21 +11,21 @@ import Second from './Second';
 import Third from './Third';
 
 const App = component('App', function comp(interactions) {
-	function rendersScene(params) {
-		const navHandler = interactions.listener('onPressNavigate');
-		const state = params.scene.navigationState;
+  function rendersScene(params) {
+    const navHandler = interactions.listener('onPressNavigate');
+    const state = params.scene.navigationState;
 
-	  switch (state.key) {
-	    case 'First':
-	      return <First navHandler={navHandler} />;
-	    case 'Second':
-	      return <Second navHandler={navHandler} />;
-	    case 'Third':
-	      return <Third navHandler={navHandler} />;
-	  }
-	}
+    switch (state.key) {
+      case 'First':
+        return <First navHandler={navHandler} />;
+      case 'Second':
+        return <Second navHandler={navHandler} />;
+      case 'Third':
+        return <Third navHandler={navHandler} />;
+    }
+  }
 
-	return model(interactions).map(function view(navigationState) {
+  return model(interactions).map(function view(navigationState) {
     return (
       // Note that we are not using a NavigationRootContainer here because Cycle-React is handling
       // the reduction of our state for us. Instead, we grab the navigationState we have in
@@ -45,28 +45,28 @@ const App = component('App', function comp(interactions) {
           />
         )}
         renderScene={props => {
-					return (
-	          // Again, we pass our navigationState from the Observable to <NavigationCard />.
-	          // Finally, we'll render out our scene based on navigationState in renderScene().
-	          <NavigationCard
-	            {...props}
-	            key={props.scene.navigationState.key}
-	            renderScene={rendersScene}
-	          />
-	        );
-				}}
+          return (
+            // Again, we pass our navigationState from the Observable to <NavigationCard />.
+            // Finally, we'll render out our scene based on navigationState in renderScene().
+            <NavigationCard
+              {...props}
+              key={props.scene.navigationState.key}
+              renderScene={rendersScene}
+            />
+          );
+        }}
       />
     );
   });
 });
 
 const styles = StyleSheet.create({
-	outerContainer: {
-		flex: 1
-	},
-	container: {
-		flex: 1
-	}
+  outerContainer: {
+    flex: 1
+  },
+  container: {
+    flex: 1
+  }
 });
 
 export default App;
